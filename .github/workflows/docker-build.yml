@@ -28,19 +28,19 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }} # Use CR_PAT if you're using a Personal Access Token
 
     - name: Build frontend Docker image
-      run: docker build -t adventure-log-frontend${{ env.SHORT_SHA }} ./frontend
+      run: docker build -t adventure-log-frontend:${{ env.SHORT_SHA }} ./frontend
 
     - name: Tag frontend Docker Image
-      run: docker tag adventure-log-frontend${{ env.SHORT_SHA }} ghcr.io/${{ github.repository_owner }}/adventure-log-frontend${{ env.SHORT_SHA }}
+      run: docker tag adventure-log-frontend:${{ env.SHORT_SHA }} ghcr.io/${{ github.repository_owner }}/adventure-log-frontend:${{ env.SHORT_SHA }}
     
     - name: Push frontend Docker Image
-      run: docker push ghcr.io/${{ github.repository_owner }}/adventure-log-frontend${{ env.SHORT_SHA }}
+      run: docker push ghcr.io/${{ github.repository_owner }}/adventure-log-frontend:${{ env.SHORT_SHA }}
     
     - name: Build backend Docker image
       run: docker build -t adventure-log-backend${{ env.SHORT_SHA }} ./backend
 
     - name: Tag backend Docker Image
-      run: docker tag adventure-log-backend${{ env.SHORT_SHA }} ghcr.io/${{ github.repository_owner }}/adventure-log-backend${{ env.SHORT_SHA }}
+      run: docker tag adventure-log-backend:${{ env.SHORT_SHA }} ghcr.io/${{ github.repository_owner }}/adventure-log-backend:${{ env.SHORT_SHA }}
 
     - name: Push backend Docker Image
-      run: docker push ghcr.io/${{ github.repository_owner }}/adventure-log-backend${{ env.SHORT_SHA }}
+      run: docker push ghcr.io/${{ github.repository_owner }}/adventure-log-backend:${{ env.SHORT_SHA }}
